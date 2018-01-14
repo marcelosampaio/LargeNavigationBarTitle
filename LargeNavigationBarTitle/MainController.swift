@@ -18,6 +18,9 @@ class MainController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
+        
         // navigation bar large title
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -26,6 +29,9 @@ class MainController: UITableViewController {
     }
 
 
+    
+    
+    
     // MARK: - Application Data Source
     private func loadSource() {
         sources.append("Abrigos")
@@ -66,11 +72,15 @@ class MainController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         cell.imageView?.image = UIImage.init(named: "detailImage")
+        cell.imageView?.layer.cornerRadius = 14
+        cell.imageView?.layer.masksToBounds = true
         cell.textLabel?.text = sources[indexPath.row]
 
         return cell
     }
  
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
+    }
 
 }
